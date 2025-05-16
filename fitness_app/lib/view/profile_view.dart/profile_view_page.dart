@@ -1,10 +1,11 @@
+import 'package:fitness_app/view/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/common/colo_extension.dart';
-import 'package:fitness_app/class/user.dart';
+import 'package:fitness_app/class/user_profile.dart';
 
 class ProfileViewPage extends StatelessWidget {
-  final UserProfile user;
-  const ProfileViewPage({super.key, required this.user});
+   UserProfile user;
+   ProfileViewPage({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +21,12 @@ class ProfileViewPage extends StatelessWidget {
         padding: const EdgeInsets.all(24.0),
         child: Column(
           children: [
-            // Profil Fotoğrafı
             CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage(user.profileImagePath ?? "assets/img/user_text.png"),
               backgroundColor: TColor.lightGray,
             ),
             const SizedBox(height: 16),
-            // Kullanıcı Adı
             Text(
               "${user.name} ${user.surname}",
               style: TextStyle(
@@ -37,7 +36,6 @@ class ProfileViewPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            // E-posta
             Text(
               user.email,
               style: TextStyle(
@@ -46,7 +44,6 @@ class ProfileViewPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            // Profil Bilgileri Kartı
             Card(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               elevation: 2,
@@ -81,21 +78,23 @@ class ProfileViewPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32),
-            // Çıkış Yap Butonu
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, "/login");
+                   Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: TColor.primaryColor1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: EdgeInsets.symmetric(vertical: 16),
                 ),
-                child: const Text(
+                child: Text(
                   "Çıkış Yap",
                   style: TextStyle(
                     color: Colors.white,

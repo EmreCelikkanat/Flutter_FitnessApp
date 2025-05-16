@@ -31,71 +31,10 @@ class _ActivityViewState extends State<ActivityView> {
     ),
   ];
 
-  void _showAddWorkoutDialog() {
-    final titleController = TextEditingController();
-    final descController = TextEditingController();
-    final movesController = TextEditingController();
-    final durationController = TextEditingController();
-
-    showDialog(
-      context: context,
-      builder:
-          (context) => AlertDialog(
-            title: const Text("Yeni Antrenman Ekle"),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  TextField(
-                    controller: titleController,
-                    decoration: InputDecoration(labelText: "Başlık"),
-                  ),
-                  TextField(
-                    controller: descController,
-                    decoration: InputDecoration(labelText: "Açıklama"),
-                  ),
-                  TextField(
-                    controller: movesController,
-                    decoration: InputDecoration(
-                      labelText: "Hareketler (virgülle ayır)",
-                    ),
-                  ),
-                  TextField(
-                    controller: durationController,
-                    decoration: const InputDecoration(
-                      labelText: "Süre (örn: 45 dk)",
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text("İptal"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    workouts.add(
-                      Workout(
-                        title: titleController.text,
-                        description: descController.text,
-                        moves:
-                            movesController.text
-                                .split(',')
-                                .map((e) => e.trim())
-                                .toList(),
-                        duration: durationController.text,
-                      ),
-                    );
-                  });
-                  Navigator.pop(context);
-                },
-                child: const Text("Ekle"),
-              ),
-            ],
-          ),
-    );
+  void onDeleteWorkout(int index) {
+    setState(() {
+      workouts.removeAt(index);
+    });
   }
 
   @override
@@ -103,14 +42,14 @@ class _ActivityViewState extends State<ActivityView> {
     return Scaffold(
       backgroundColor: TColor.white,
       appBar: AppBar(
-        title: const Text("Antrenman Kayıtları"),
+        title: Text("Antrenman Kayıtları"),
         backgroundColor: TColor.primaryColor1,
         automaticallyImplyLeading: false,
       ),
       body: ListView.separated(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         itemCount: workouts.length + 1,
-        separatorBuilder: (_, __) => const SizedBox(height: 16),
+        separatorBuilder: (_, __) => SizedBox(height: 16),
         itemBuilder: (context, index) {
           if (index == workouts.length) {
             return ElevatedButton.icon(
@@ -119,20 +58,20 @@ class _ActivityViewState extends State<ActivityView> {
                   context,
                   MaterialPageRoute(builder: (context) => const AddWorkout()),
                 );
-                if (newWorkout != null && newWorkout is Workout) {
+                if (newWorkout != null) {
                   setState(() {
                     workouts.add(newWorkout);
                   });
                 }
               },
-              icon: const Icon(Icons.add),
-              label: const Text("Yeni Antrenman Ekle"),
+              icon: Icon(Icons.add),
+              label: Text("Yeni Antrenman Ekle"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: TColor.primaryColor1,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: EdgeInsets.symmetric(vertical: 16),
               ),
             );
           }
@@ -141,45 +80,82 @@ class _ActivityViewState extends State<ActivityView> {
               borderRadius: BorderRadius.circular(16),
             ),
             elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Antrenman ${index+1} :${workouts[index].title}",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: TColor.primaryColor1,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    workouts[index].description,
-                    style: TextStyle(color: TColor.gray),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    "Hareketler:",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 4),
-                  Column(
+            child: Stack(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:
-                        workouts[index].moves.map((m) => Text("- $m")).toList(),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
                     children: [
-                      Icon(Icons.timer, color: TColor.primaryColor2),
-                      const SizedBox(width: 8),
-                      Text("Toplam Süre: ${workouts[index].duration} dk"),
+                      Text(
+                        "Antrenman ${index + 1} :${workouts[index].title}",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: TColor.primaryColor1,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        workouts[index].description,
+                        style: TextStyle(color: TColor.gray),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        "Hareketler:",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 4),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: workouts[index]
+                            .moves
+                            .map((m) => Text("- $m"))
+                            .toList(),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Icon(Icons.timer, color: TColor.primaryColor2),
+                          const SizedBox(width: 8),
+                          Text("Toplam Süre: ${workouts[index].duration} dk"),
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: IconButton(
+                    icon: Icon(Icons.close, color: Colors.red),
+                    onPressed: () async {
+                       var result = await showDialog<bool>(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("Silmek istediğine emin misin?"),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                              child: Text("Vazgeç"),
+                            ),
+                            ElevatedButton(
+                              onPressed: () => Navigator.pop(context, true),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: TColor.primaryColor1,
+                              ),
+                              child: Text("Tamam"),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (result == true) {
+                        onDeleteWorkout(index);
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
           );
         },

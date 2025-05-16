@@ -1,7 +1,7 @@
 import 'package:fitness_app/common/colo_extension.dart';
 import 'package:fitness_app/view/login/main_tab_view.dart';
 import 'package:flutter/material.dart';
-import 'package:fitness_app/class/user.dart';
+import 'package:fitness_app/class/user_profile.dart';
 
 class SetProfile extends StatefulWidget {
   const SetProfile({super.key});
@@ -11,14 +11,14 @@ class SetProfile extends StatefulWidget {
 }
 
 class _SetProfileState extends State<SetProfile> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController surnameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
-  final TextEditingController heightController = TextEditingController();
-  final TextEditingController weightController = TextEditingController();
-  String gender = "Erkek";
+  var nameController = TextEditingController();
+  var surnameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+  var ageController = TextEditingController();
+  var heightController = TextEditingController();
+  var weightController = TextEditingController();
+  var gender = "Erkek";
 
   @override
   Widget build(BuildContext context) {
@@ -131,8 +131,7 @@ class _SetProfileState extends State<SetProfile> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    // Bilgileri UserProfile nesnesine aktar
-                    final user = UserProfile(
+                    var user = UserProfile(
                       name: nameController.text,
                       surname: surnameController.text,
                       email: emailController.text,
@@ -142,7 +141,6 @@ class _SetProfileState extends State<SetProfile> {
                       weightKg: double.tryParse(weightController.text) ?? 0,
                       gender: gender,
                     );
-                    // MainTabView'a user gönder
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

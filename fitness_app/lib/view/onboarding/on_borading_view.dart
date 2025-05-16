@@ -53,10 +53,10 @@ class _OnBoradingViewState extends State<OnBoradingView> {
             itemCount: pageList.length,
             itemBuilder: (context, index) {
               var pObj = pageList[index] as Map? ?? {};
-              return OnBoardingPage(pObj: pObj);
+              OnBoardingPage(pObj: pObj);
             },
           ),
-          
+
           SizedBox(
             width: 120,
             height: 120,
@@ -67,7 +67,7 @@ class _OnBoradingViewState extends State<OnBoradingView> {
                   width: 70,
                   height: 70,
                   child: CircularProgressIndicator(
-                    value : (selectedIndex + 1)/ 3,
+                    value: (selectedIndex + 1) / 3,
                     color: TColor.primaryColor1,
                     strokeWidth: 2,
                   ),
@@ -75,22 +75,34 @@ class _OnBoradingViewState extends State<OnBoradingView> {
                 Container(
                   width: 60,
                   height: 60,
-                  margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                  decoration: BoxDecoration(color: TColor.primaryColor1, borderRadius: BorderRadius.circular(35)),
-                  child: IconButton(onPressed: () {
-                    if(selectedIndex < 2) {
-                     selectedIndex = selectedIndex + 1;
-                      controller.jumpToPage(selectedIndex);
-                    }
-                    else {
-                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  LoginPage()));
-                    }
-                  }, icon: Icon(Icons.navigate_next, color: TColor.white, size: 35,), color: TColor.primaryColor1,),
+                  margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                  decoration: BoxDecoration(
+                    color: TColor.primaryColor1,
+                    borderRadius: BorderRadius.circular(35),
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      if (selectedIndex < 2) {
+                        selectedIndex = selectedIndex + 1;
+                        controller.jumpToPage(selectedIndex);
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      }
+                    },
+                    icon: Icon(
+                      Icons.navigate_next,
+                      color: TColor.white,
+                      size: 35,
+                    ),
+                    color: TColor.primaryColor1,
+                  ),
                 ),
-                
               ],
             ),
-          )
+          ),
         ],
       ),
     );

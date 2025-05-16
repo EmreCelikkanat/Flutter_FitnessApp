@@ -11,24 +11,24 @@ class CameraViewPage extends StatefulWidget {
 }
 
 class _CameraViewPageState extends State<CameraViewPage> {
-  final List<File> _photos = [];
+   List<File> photos = [];
 
-  Future<void> _addPhoto() async {
-    final picker = ImagePicker();
-    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery); 
+  Future<void> addPhoto() async {
+    var picker = ImagePicker();
+     XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery); 
     if (pickedFile != null) {
       setState(() {
-        _photos.add(File(pickedFile.path));
+        photos.add(File(pickedFile.path));
       });
     }
   }
 
-  Future<void> _takePhoto() async {
-    final picker = ImagePicker();
-    final XFile? pickedFile = await picker.pickImage(source: ImageSource.camera);
+  Future<void> takePhoto() async {
+    var picker = ImagePicker();
+     XFile? pickedFile = await picker.pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       setState(() {
-        _photos.add(File(pickedFile.path));
+        photos.add(File(pickedFile.path));
       });
     }
   }
@@ -38,19 +38,19 @@ class _CameraViewPageState extends State<CameraViewPage> {
     return Scaffold(
       backgroundColor: TColor.white,
       appBar: AppBar(
-        title: const Text("Fotoğraf Galerim"),
+        title: Text("Fotoğraf Galerim"),
         backgroundColor: TColor.primaryColor1,
         automaticallyImplyLeading: false, 
         actions: [
           IconButton(
-            icon: const Icon(Icons.add_a_photo),
-            onPressed: _takePhoto, 
+            icon: Icon(Icons.add_a_photo),
+            onPressed: takePhoto, 
           ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: _photos.isEmpty
+        padding: EdgeInsets.all(12.0),
+        child: photos.isEmpty
             ? Center(
                 child: Text(
                   "Henüz fotoğraf yüklemediniz.",
@@ -58,7 +58,7 @@ class _CameraViewPageState extends State<CameraViewPage> {
                 ),
               )
             : GridView.builder(
-                itemCount: _photos.length,
+                itemCount: photos.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, 
                   crossAxisSpacing: 12,
@@ -69,7 +69,7 @@ class _CameraViewPageState extends State<CameraViewPage> {
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: Image.file(
-                      _photos[index],
+                      photos[index],
                       fit: BoxFit.cover,
                     ),
                   );
@@ -78,8 +78,8 @@ class _CameraViewPageState extends State<CameraViewPage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: TColor.primaryColor1,
-        onPressed: _addPhoto,
-        child: const Icon(Icons.add),
+        onPressed: addPhoto,
+        child: Icon(Icons.add),
         tooltip: "Fotoğraf Yükle",
       ),
     );

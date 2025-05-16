@@ -1,4 +1,4 @@
-import 'package:fitness_app/class/user.dart';
+import 'package:fitness_app/class/user_profile.dart';
 import 'package:fitness_app/common/colo_extension.dart';
 import 'package:fitness_app/common_widget/tab_button.dart';
 import 'package:fitness_app/view/home/home_view.dart';
@@ -20,10 +20,9 @@ class _MainTabViewState extends State<MainTabView> {
 
   @override
   Widget build(BuildContext context) {
-    // user bilgisini widget'tan al
     final user = widget.user;
 
-    // user parametresi ile sayfaları oluştur
+    
     final List<Widget> pages = [
       HomeView(user: user),
       const ActivityView(),

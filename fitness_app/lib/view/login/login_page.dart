@@ -1,6 +1,9 @@
+import 'package:fitness_app/class/user_profile.dart';
+import 'package:fitness_app/view/login/main_tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/common/colo_extension.dart';
 import 'package:fitness_app/view/login/set_profile.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,6 +15,18 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  var user = UserProfile(
+    name: "emir",
+    surname: "öztürk",
+    email: "emirozturk@gmail.com",
+    password: "123",
+    age: 30,
+    heightCm: 170,
+    weightKg: 70,
+    gender: "Erkek",
+    profileImagePath: null,
+    );
+  
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +94,9 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const SetProfile())
+                    MaterialPageRoute(builder: (context) => MainTabView( user: user )),
                   );
                 },
                 style: ElevatedButton.styleFrom(
