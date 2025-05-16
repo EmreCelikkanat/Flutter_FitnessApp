@@ -1,6 +1,6 @@
 import 'package:fitness_app/common/colo_extension.dart';
 import 'package:fitness_app/common_widget/on_boarding_page.dart';
-import 'package:fitness_app/view/login/sign_up.dart' show SignUp;
+import 'package:fitness_app/view/login/login_page.dart';
 import 'package:flutter/material.dart';
 
 class OnBoradingView extends StatefulWidget {
@@ -83,8 +83,7 @@ class _OnBoradingViewState extends State<OnBoradingView> {
                       controller.jumpToPage(selectedIndex);
                     }
                     else {
-                       print("welcome the screen");
-                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  SignUp()));
+                       Navigator.push(context, MaterialPageRoute(builder: (context) =>  LoginPage()));
                     }
                   }, icon: Icon(Icons.navigate_next, color: TColor.white, size: 35,), color: TColor.primaryColor1,),
                 ),
