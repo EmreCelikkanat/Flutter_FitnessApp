@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fitness_app/common/colo_extension.dart';
 import 'package:fitness_app/view/login/set_profile.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -13,8 +12,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
   var user = UserProfile(
     name: "emir",
     surname: "öztürk",
@@ -25,8 +25,7 @@ class _LoginPageState extends State<LoginPage> {
     weightKg: 70,
     gender: "Erkek",
     profileImagePath: null,
-    );
-  
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: TColor.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
               const SizedBox(height: 60),
@@ -61,11 +60,18 @@ class _LoginPageState extends State<LoginPage> {
                       alignment: Alignment.center,
                       width: 15,
                       height: 15,
-                      child: Image.asset("assets/img/email.png", width: 15, height: 15),
+                      child: Image.asset(
+                        "assets/img/email.png",
+                        width: 15,
+                        height: 15,
+                      ),
                     ),
                     hintText: "Mail Adresiniz",
                     border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 15,
+                    ),
                   ),
                 ),
               ),
@@ -83,11 +89,18 @@ class _LoginPageState extends State<LoginPage> {
                       alignment: Alignment.center,
                       width: 15,
                       height: 15,
-                      child: Image.asset("assets/img/lock.png", width: 15, height: 15),
+                      child: Image.asset(
+                        "assets/img/lock.png",
+                        width: 15,
+                        height: 15,
+                      ),
                     ),
                     hintText: "Şifre",
                     border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 15,
+                    ),
                   ),
                 ),
               ),
@@ -96,13 +109,15 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => MainTabView( user: user )),
+                    MaterialPageRoute(
+                      builder: (context) => MainTabView(user: user),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: TColor.primaryColor1,
-                  minimumSize: const Size(double.infinity, 50),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  minimumSize: Size(double.infinity, 50),
+                  padding: EdgeInsets.symmetric(horizontal: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
@@ -120,13 +135,15 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Hesabınız yok mu?"),
+                  Text("Hesabınız yok mu?"),
                   const SizedBox(width: 8),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const SetProfile()),
+                        MaterialPageRoute(
+                          builder: (context) => const SetProfile(),
+                        ),
                       );
                     },
                     child: Text(

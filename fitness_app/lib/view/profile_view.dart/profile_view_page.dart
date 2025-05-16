@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fitness_app/common/colo_extension.dart';
 import 'package:fitness_app/class/user_profile.dart';
 
+
 class ProfileViewPage extends StatelessWidget {
    UserProfile user;
    ProfileViewPage({super.key, required this.user});
@@ -12,9 +13,8 @@ class ProfileViewPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: TColor.white,
       appBar: AppBar(
-        title: const Text("Profilim"),
+        title: Text("Profilim"),
         backgroundColor: TColor.primaryColor1,
-        elevation: 0,
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -48,7 +48,7 @@ class ProfileViewPage extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               elevation: 2,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

@@ -53,7 +53,7 @@ class _OnBoradingViewState extends State<OnBoradingView> {
             itemCount: pageList.length,
             itemBuilder: (context, index) {
               var pObj = pageList[index] as Map? ?? {};
-              OnBoardingPage(pObj: pObj);
+              return OnBoardingPage(pObj: pObj); 
             },
           ),
 

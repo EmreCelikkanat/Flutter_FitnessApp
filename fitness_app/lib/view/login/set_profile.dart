@@ -28,7 +28,7 @@ class _SetProfileState extends State<SetProfile> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               children: [
                 Image.asset(
@@ -103,7 +103,7 @@ class _SetProfileState extends State<SetProfile> {
                 // Cinsiyet seçimi
                 Row(
                   children: [
-                    const Text(
+                      Text(
                       "Cinsiyet:",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
