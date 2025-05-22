@@ -34,7 +34,7 @@ class _MainTabViewState extends State<MainTabView> {
       backgroundColor: TColor.white,
       body: pages[selectedIndex],
       bottomNavigationBar: BottomAppBar(
-        child: Container(
+        child: SizedBox(
           height: kToolbarHeight,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

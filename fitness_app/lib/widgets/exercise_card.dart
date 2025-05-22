@@ -7,7 +7,7 @@ class ExerciseCard extends StatelessWidget {
   String title;
   String subtitle;
 
-  ExerciseCard({
+  ExerciseCard({super.key, 
     required this.icon,
     required this.color,
     required this.title,

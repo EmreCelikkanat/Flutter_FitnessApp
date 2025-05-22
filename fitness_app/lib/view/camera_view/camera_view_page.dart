@@ -79,8 +79,8 @@ class _CameraViewPageState extends State<CameraViewPage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: TColor.primaryColor1,
         onPressed: addPhoto,
-        child: Icon(Icons.add),
         tooltip: "Fotoğraf Yükle",
+        child: Icon(Icons.add),
       ),
     );
   }
