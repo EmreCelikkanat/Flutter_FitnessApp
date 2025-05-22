@@ -23,7 +23,7 @@ class ProfileViewPage extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage(user.profileImagePath ?? "assets/img/user_text.png"),
+              backgroundImage: AssetImage(user.profileImagePath ?? "assets/img/u1.png"),
               backgroundColor: TColor.lightGray,
             ),
             const SizedBox(height: 16),

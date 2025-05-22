@@ -26,17 +26,17 @@ class _OnBoradingViewState extends State<OnBoradingView> {
   List pageList = [
     {
       "title": "Trakya Fitness Uygulamasına Hoşgeldiniz!",
-      "desc": "Uygulama Kaslı bir Emir Öztürk Görmek Adına Yapılmıştır.",
+      "desc": "Bu uygulama ile artık daha sağlıklı bir yaşama doğru yola çıkın.",
       "img": "assets/img/on_1.png",
     },
     {
-      "title": "Kaslı Emir Öztürk",
-      "desc": "Kaslı Emir Öztürk Görmek Adına Yapılmıştır.",
+      "title": "Hareketli Yaşam",
+      "desc": " Bu uygulama sayesinde hareketsizliğe veda edin, daha dinç, sağlıklı ve fit bir yaşama adım atın. Kişisel hedeflerinize uygun egzersiz programları, motivasyon artırıcı özellikler ve sağlıklı yaşam önerileriyle, günlük rutininize kolayca hareket katabilir, yaşam kalitenizi artırabilirsiniz. “Hareketli Yaşam” ile her gününüz daha enerjik ve aktif geçsin!.",
       "img": "assets/img/on_2.png",
     },
     {
-      "title": "Kaslı Emir Öztürk",
-      "desc": "Kaslı Emir Öztürk Görmek Adına Yapılmıştır.",
+      "title": "Sağlıklı Yaşam",
+      "desc": "Bu uygulama ile sağlıklı yaşam tarzını benimseyin, fiziksel aktiviteyi günlük yaşamınıza entegre edin. Sağlıklı yaşamın temel taşlarını oluşturan düzenli egzersiz ve yeterli dinlenme ile kendinizi daha enerjik ve zinde hissedeceksiniz. “Sağlıklı Yaşam” ile sağlığınıza yatırım yapın!",
       "img": "assets/img/on_3.png",
     },
   ];
