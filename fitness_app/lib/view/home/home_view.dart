@@ -2,6 +2,7 @@ import 'package:fitness_app/class/user_profile.dart';
 import 'package:fitness_app/common/colo_extension.dart';
 import 'package:fitness_app/view/activity_view.dart/activity.dart';
 import 'package:fitness_app/view/home/calorie_page.dart';
+import 'package:fitness_app/view/home/execise/plank_page.dart';
 import 'package:fitness_app/view/home/execise/squat_page.dart';
 import 'package:fitness_app/view/home/water_page.dart';
 import 'package:fitness_app/widgets/exercise_card.dart';
@@ -323,11 +324,21 @@ class _HomeViewState extends State<HomeView> {
                               subtitle: "Alt vücut",
                             ),
                           ),
-                          ExerciseCard(
-                            icon: Icons.push_pin,
-                            color: TColor.secondaryColor1,
-                            title: "Plank",
-                            subtitle: "Karın",
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const PlankPage(),
+                                ),
+                              );
+                            },
+                            child: ExerciseCard(
+                              icon: Icons.accessibility_new,
+                              color: TColor.primaryColor1,
+                              title: "Squat",
+                              subtitle: "Alt vücut",
+                            ),
                           ),
                         ],
                       ),
@@ -343,7 +354,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-   String bmiDescription(double bmi) {
+  String bmiDescription(double bmi) {
     if (bmi < 18.5) return "Zayıf";
     if (bmi < 25) return "Normal";
     if (bmi < 30) return "Fazla kilolu";
