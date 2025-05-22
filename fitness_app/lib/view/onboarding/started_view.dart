@@ -3,11 +3,14 @@ import 'package:fitness_app/view/onboarding/on_borading_view.dart';
 import 'package:flutter/material.dart';
 
 class StartedView extends StatefulWidget {
+  const StartedView({super.key});
+
   @override
   State<StartedView> createState() => _StartedViewState();
 }
 
 class _StartedViewState extends State<StartedView> {
+  @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     return Scaffold(

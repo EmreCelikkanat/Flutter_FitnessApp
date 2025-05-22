@@ -16,15 +16,14 @@ class _LoginPageState extends State<LoginPage> {
   var passwordController = TextEditingController();
 
   var user = UserProfile(
-    name: "emir",
-    surname: "öztürk",
-    email: "emirozturk@gmail.com",
+    name: "Emre",
+    surname: "Çelikkanat",
+    email: "emre@gmail.com",
     password: "123",
-    age: 30,
-    heightCm: 170,
-    weightKg: 70,
+    age: 22,
+    heightCm: 181,
+    weightKg: 83,
     gender: "Erkek",
-    profileImagePath: null,
   );
 
   @override

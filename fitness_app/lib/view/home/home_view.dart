@@ -1,6 +1,7 @@
 import 'package:fitness_app/class/user_profile.dart';
 import 'package:fitness_app/common/colo_extension.dart';
 import 'package:fitness_app/view/activity_view.dart/activity.dart';
+import 'package:fitness_app/view/home/calorie_page.dart';
 import 'package:fitness_app/view/home/execise/squat_page.dart';
 import 'package:fitness_app/view/home/water_page.dart';
 import 'package:fitness_app/widgets/exercise_card.dart';
@@ -11,7 +12,8 @@ import 'sleep_page.dart';
 
 class HomeView extends StatefulWidget {
   final UserProfile? user;
-  const HomeView({super.key, this.user});
+  final VoidCallback? onShowAllActivities;
+  const HomeView({super.key, this.user, this.onShowAllActivities});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -20,20 +22,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    var user =
-        widget.user ??
-        UserProfile(
-          name: "Kullanıcı",
-          surname: "",
-          email: "",
-          password: "",
-          age: 0,
-          heightCm: 170,
-          weightKg: 70,
-          gender: "",
-        );
-     double boyMetre = user.heightCm / 100;
-     double bmi = user.weightKg / (boyMetre * boyMetre);
+    double boyMetre = widget.user!.heightCm / 100;
+    double bmi = widget.user!.weightKg / (boyMetre * boyMetre);
 
     return Scaffold(
       backgroundColor: TColor.white,
@@ -47,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Hoş geldin, ${user.name}!",
+                    "Hoş geldin, ${widget.user!.name}!",
                     style: TextStyle(
                       color: TColor.gray,
                       fontSize: 20,
@@ -69,16 +59,19 @@ class _HomeViewState extends State<HomeView> {
                         icon: Icons.directions_walk,
                         label: "Adım",
                         value: "6.500",
+                        color: Colors.limeAccent,
                       ),
                       StatColumn(
                         icon: Icons.local_fire_department,
                         label: "Kalori",
                         value: "320",
+                        color: Colors.orangeAccent,
                       ),
                       StatColumn(
                         icon: Icons.timer,
                         label: "Süre",
                         value: "45 dk",
+                        color: Colors.deepPurple,
                       ),
                     ],
                   ),
@@ -99,12 +92,9 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ActivityView(),
-                              ),
-                            );
+                            if (widget.onShowAllActivities != null) {
+                              widget.onShowAllActivities!();
+                            }
                           },
                           child: Text(
                             "Tümü",
@@ -212,19 +202,42 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ),
                     ),
-                    Column(
-                      children: [
-                        Icon(
-                          Icons.local_fire_department,
-                          color: TColor.primaryColor2,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CaloriePage(),
+                          ),
+                        );
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        const SizedBox(height: 4),
-                        Text("Kalori", style: TextStyle(color: TColor.gray)),
-                        const Text(
-                          "1800",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        elevation: 2,
+                        color: TColor.lightGray,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 18,
+                            vertical: 16,
+                          ),
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.local_fire_department,
+                                color: TColor.primaryColor2,
+                                size: 32,
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                "Kalori",
+                                style: TextStyle(color: TColor.gray),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
@@ -318,7 +331,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  static String bmiDescription(double bmi) {
+   String bmiDescription(double bmi) {
     if (bmi < 18.5) return "Zayıf";
     if (bmi < 25) return "Normal";
     if (bmi < 30) return "Fazla kilolu";

@@ -12,6 +12,14 @@ class CameraViewPage extends StatefulWidget {
 
 class _CameraViewPageState extends State<CameraViewPage> {
    List<File> photos = [];
+   List<String> assetPhotos = [
+     "assets/img/emirozturkrealvucut.png",
+     "assets/img/atletli.png",
+      "assets/img/kollarbagli.png",
+      "assets/img/gerçeksamet.png",
+      "assets/img/gerçekben.png",
+      "assets/img/side-view-muscly-athletic-man-holding-weights.jpg",
+   ];
 
   Future<void> addPhoto() async {
     var picker = ImagePicker();
@@ -41,24 +49,18 @@ class _CameraViewPageState extends State<CameraViewPage> {
         title: Text("Fotoğraf Galerim"),
         backgroundColor: TColor.primaryColor1,
         automaticallyImplyLeading: false, 
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add_a_photo),
-            onPressed: takePhoto, 
-          ),
-        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(12.0),
-        child: photos.isEmpty
+        child: assetPhotos.isEmpty
             ? Center(
                 child: Text(
-                  "Henüz fotoğraf yüklemediniz.",
+                  "Henüz fotoğraf yok.",
                   style: TextStyle(color: TColor.gray, fontSize: 16),
                 ),
               )
             : GridView.builder(
-                itemCount: photos.length,
+                itemCount: assetPhotos.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, 
                   crossAxisSpacing: 12,
@@ -68,8 +70,8 @@ class _CameraViewPageState extends State<CameraViewPage> {
                 itemBuilder: (context, index) {
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    child: Image.file(
-                      photos[index],
+                    child: Image.asset(
+                      assetPhotos[index],
                       fit: BoxFit.cover,
                     ),
                   );
@@ -79,8 +81,8 @@ class _CameraViewPageState extends State<CameraViewPage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: TColor.primaryColor1,
         onPressed: addPhoto,
-        child: Icon(Icons.add),
         tooltip: "Fotoğraf Yükle",
+        child: Icon(Icons.add),
       ),
     );
   }

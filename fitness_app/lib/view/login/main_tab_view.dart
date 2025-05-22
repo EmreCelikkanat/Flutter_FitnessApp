@@ -1,4 +1,5 @@
 import 'package:fitness_app/class/user_profile.dart';
+import 'package:fitness_app/class/workout.dart';
 import 'package:fitness_app/common/colo_extension.dart';
 import 'package:fitness_app/common_widget/tab_button.dart';
 import 'package:fitness_app/view/home/home_view.dart';
@@ -9,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class MainTabView extends StatefulWidget {
   final UserProfile user;
-  const MainTabView({super.key, required this.user});
+   MainTabView({super.key, required this.user});
 
   @override
   State<MainTabView> createState() => _MainTabViewState();
@@ -18,13 +19,19 @@ class MainTabView extends StatefulWidget {
 class _MainTabViewState extends State<MainTabView> {
   int selectedIndex = 0;
 
+  void _goToActivityTab() {
+    setState(() {
+      selectedIndex = 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = widget.user;
 
     
     final List<Widget> pages = [
-      HomeView(user: user),
+      HomeView(user: user,onShowAllActivities: _goToActivityTab,),
       const ActivityView(),
       const CameraViewPage(),
       ProfileViewPage(user: user),
@@ -34,7 +41,7 @@ class _MainTabViewState extends State<MainTabView> {
       backgroundColor: TColor.white,
       body: pages[selectedIndex],
       bottomNavigationBar: BottomAppBar(
-        child: Container(
+        child: SizedBox(
           height: kToolbarHeight,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

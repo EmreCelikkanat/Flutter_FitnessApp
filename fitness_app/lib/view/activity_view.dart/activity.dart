@@ -88,7 +88,7 @@ class _ActivityViewState extends State<ActivityView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Antrenman ${index + 1} :${workouts[index].title}",
+                        "Antrenman ${index + 1} : ${workouts[index].title}",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
