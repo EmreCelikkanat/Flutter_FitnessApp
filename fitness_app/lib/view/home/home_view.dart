@@ -121,6 +121,18 @@ class _HomeViewState extends State<HomeView> {
                             title: "Koşu",
                             subtitle: "30 dk",
                           ),
+                          WorkoutCard(
+                            icon: Icons.accessibility_new,
+                            color: TColor.primaryColor2,
+                            title: "Squat",
+                            subtitle: "3 set",
+                          ),
+                          WorkoutCard(
+                            icon: Icons.sixty_fps_select,
+                            color: TColor.secondaryColor2,
+                            title: "Plank",
+                            subtitle: "1 dk",
+                          ),
                         ],
                       ),
                     ),
