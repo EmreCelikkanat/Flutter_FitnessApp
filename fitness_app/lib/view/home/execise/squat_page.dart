@@ -1,3 +1,4 @@
+import 'package:fitness_app/common/colo_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -27,6 +28,7 @@ class _SquatPageState extends State<SquatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Squat Egzersizi")),
+      backgroundColor: const Color.fromARGB(255, 246, 244, 244),
       body: Padding(
         padding: EdgeInsets.all(24.0),
         child: Column(

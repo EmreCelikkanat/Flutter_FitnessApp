@@ -5,8 +5,8 @@ import 'package:fitness_app/class/user_profile.dart';
 
 
 class ProfileViewPage extends StatelessWidget {
-   UserProfile user;
-   ProfileViewPage({super.key, required this.user});
+  final UserProfile user;
+    const ProfileViewPage({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {

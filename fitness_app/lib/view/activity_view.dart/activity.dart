@@ -4,36 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:fitness_app/common/colo_extension.dart';
 
 class ActivityView extends StatefulWidget {
-  const ActivityView({super.key});
+   ActivityView({super.key, required this.workouts});
+   List<Workout> workouts;
 
   @override
   State<ActivityView> createState() => _ActivityViewState();
 }
 
 class _ActivityViewState extends State<ActivityView> {
-  List<Workout> workouts = [
-    Workout(
-      title: " Göğüs ve Kol",
-      description: "Bu antrenmanda göğüs ve kol kaslarını çalıştıracaksın.",
-      moves: [
-        "Bench Press: 3 set x 12 tekrar",
-        "Dumbbell Curl: 3 set x 10 tekrar",
-        "Push Up: 3 set x 15 tekrar",
-        "Triceps Dips: 3 set x 12 tekrar",
-      ],
-      duration: "45 ",
-    ),
-    Workout(
-      title: " Kardiyo",
-      description: "Dayanıklılığını artırmak için kardiyo egzersizleri.",
-      moves: ["Koşu: 20 dk", "İp Atlama: 10 dk", "Bisiklet: 15 dk"],
-      duration: "45 ",
-    ),
-  ];
+  
 
   void onDeleteWorkout(int index) {
     setState(() {
-      workouts.removeAt(index);
+      widget.workouts.removeAt(index);
     });
   }
 
@@ -48,10 +31,10 @@ class _ActivityViewState extends State<ActivityView> {
       ),
       body: ListView.separated(
         padding: EdgeInsets.all(16),
-        itemCount: workouts.length + 1,
+        itemCount: widget.workouts.length + 1,
         separatorBuilder: (_, __) => SizedBox(height: 16),
         itemBuilder: (context, index) {
-          if (index == workouts.length) {
+          if (index == widget.workouts.length) {
             return ElevatedButton.icon(
               onPressed: () async {
                 final newWorkout = await Navigator.push(
@@ -60,7 +43,7 @@ class _ActivityViewState extends State<ActivityView> {
                 );
                 if (newWorkout != null) {
                   setState(() {
-                    workouts.add(newWorkout);
+                    widget.workouts.add(newWorkout);
                   });
                 }
               },
@@ -88,7 +71,7 @@ class _ActivityViewState extends State<ActivityView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Antrenman ${index + 1} : ${workouts[index].title}",
+                        "Antrenman ${index + 1} : ${widget.workouts[index].title}",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -97,7 +80,7 @@ class _ActivityViewState extends State<ActivityView> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        workouts[index].description,
+                        widget.workouts[index].description,
                         style: TextStyle(color: TColor.gray),
                       ),
                       const SizedBox(height: 12),
@@ -108,7 +91,7 @@ class _ActivityViewState extends State<ActivityView> {
                       const SizedBox(height: 4),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: workouts[index]
+                        children: widget.workouts[index]
                             .moves
                             .map((m) => Text("- $m"))
                             .toList(),
@@ -118,7 +101,7 @@ class _ActivityViewState extends State<ActivityView> {
                         children: [
                           Icon(Icons.timer, color: TColor.primaryColor2),
                           const SizedBox(width: 8),
-                          Text("Toplam Süre: ${workouts[index].duration} dk"),
+                          Text("Toplam Süre: ${widget.workouts[index].duration} dk"),
                         ],
                       ),
                     ],

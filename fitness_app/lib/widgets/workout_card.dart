@@ -27,7 +27,7 @@ class WorkoutCard extends StatelessWidget {
         children: [
           Icon(icon, color: color, size: 32),
           const SizedBox(height: 8),
-          Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10)),
           Text(subtitle),
         ],
       ),

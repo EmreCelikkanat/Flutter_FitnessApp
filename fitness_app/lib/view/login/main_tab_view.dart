@@ -15,6 +15,20 @@ class MainTabView extends StatefulWidget {
   @override
   State<MainTabView> createState() => _MainTabViewState();
 }
+List<Workout> workouts = [
+  Workout(
+    title: "Kardiyo",
+    description: "30 dakika koşu",
+    duration: "30",
+    moves: ["Koşu", "Yürüyüş"],
+  ),
+  Workout(
+    title: "Ağırlık Antrenmanı",
+    description: "Üst vücut antrenmanı",
+    duration: "45",
+    moves: ["Bench Press", "Squat"],
+  ),
+];
 
 class _MainTabViewState extends State<MainTabView> {
   int selectedIndex = 0;
@@ -31,8 +45,8 @@ class _MainTabViewState extends State<MainTabView> {
 
     
     final List<Widget> pages = [
-      HomeView(user: user,onShowAllActivities: _goToActivityTab,),
-      const ActivityView(),
+      HomeView(user: user,onShowAllActivities: _goToActivityTab,workouts:workouts,),
+       ActivityView(workouts: workouts,),
       const CameraViewPage(),
       ProfileViewPage(user: user),
     ];

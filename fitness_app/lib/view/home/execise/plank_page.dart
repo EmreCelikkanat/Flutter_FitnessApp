@@ -78,8 +78,9 @@ class _PlankPageState extends State<PlankPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Plank Challenge"),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.lightBlue,
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),

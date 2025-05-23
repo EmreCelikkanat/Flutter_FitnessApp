@@ -1,6 +1,7 @@
 import 'package:fitness_app/class/user_profile.dart';
+import 'package:fitness_app/class/workout.dart';
 import 'package:fitness_app/common/colo_extension.dart';
-import 'package:fitness_app/view/activity_view.dart/activity.dart';
+
 import 'package:fitness_app/view/home/calorie_page.dart';
 import 'package:fitness_app/view/home/execise/plank_page.dart';
 import 'package:fitness_app/view/home/execise/squat_page.dart';
@@ -14,7 +15,13 @@ import 'sleep_page.dart';
 class HomeView extends StatefulWidget {
   final UserProfile? user;
   final VoidCallback? onShowAllActivities;
-  const HomeView({super.key, this.user, this.onShowAllActivities});
+  List<Workout> workouts;
+  HomeView({
+    super.key,
+    this.user,
+    this.onShowAllActivities,
+    required this.workouts,
+  });
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -109,32 +116,17 @@ class _HomeViewState extends State<HomeView> {
                       height: 100,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
-                        children: [
-                          WorkoutCard(
-                            icon: Icons.fitness_center,
-                            color: TColor.primaryColor1,
-                            title: "Göğüs",
-                            subtitle: "3 hareket",
-                          ),
-                          WorkoutCard(
-                            icon: Icons.directions_run,
-                            color: TColor.secondaryColor1,
-                            title: "Koşu",
-                            subtitle: "30 dk",
-                          ),
-                          WorkoutCard(
-                            icon: Icons.accessibility_new,
-                            color: TColor.primaryColor2,
-                            title: "Squat",
-                            subtitle: "3 set",
-                          ),
-                          WorkoutCard(
-                            icon: Icons.sixty_fps_select,
-                            color: TColor.secondaryColor2,
-                            title: "Plank",
-                            subtitle: "1 dk",
-                          ),
-                        ],
+                        children:
+                            widget.workouts
+                                .map(
+                                  (workout) => WorkoutCard(
+                                    icon: Icons.fitness_center,
+                                    color: TColor.primaryColor1,
+                                    title: workout.title,
+                                    subtitle: "${workout.moves.length} hareket",
+                                  ),
+                                )
+                                .toList(),
                       ),
                     ),
                   ],
